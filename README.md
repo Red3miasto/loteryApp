@@ -1,4 +1,4 @@
-# loteryApp 🎁
+# lotteryApp 🎁
 
 Gift drawing application
 

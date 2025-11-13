@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/../path_to_config/file';
+require_once __DIR__ . '/../config/file';
 
 try {
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
@@ -73,50 +73,9 @@ if ($page == 'login' && !isLoggedIn() && $_SERVER['REQUEST_METHOD'] === 'POST') 
 <html lang="pl">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Santa App</title>
-    <style>
-        /* ========== CSS  ========== */
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
-        .container{background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);padding:40px;max-width:500px;width:100%;position:relative;background-size:cover;background-position:center;background-repeat:no-repeat;}
-        .container::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.4);border-radius:20px;z-index:1;pointer-events:none;}
-        .container>*{position:relative;z-index:2;}
-        .container.logged-in{background-image:url('images/in.jpg');}
-        .container.logged-out{background-image:url('images/out.jpg');}
-        .container.login-page{background:white;}
-        .header{text-align:center;margin-bottom:30px;}
-        .holiday-icon{font-size:60px;margin-bottom:15px;}
-        h1,h2,h3{color:#333;}
-        h1{margin-bottom:10px;} h2{margin-bottom:20px;} h3{margin-top:30px;margin-bottom:15px;}
-        .subtitle{color:#666;font-size:14px;}
-        .form-group{margin-bottom:20px;}
-        label{display:block;margin-bottom:8px;color:#333;font-weight:600;}
-        input[type="text"],input[type="password"],textarea{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-size:14px;transition:border-color 0.3s;}
-        input:focus,textarea:focus{outline:none;border-color:#667eea;}
-        textarea{resize:vertical;min-height:100px;}
-        .btn{width:100%;padding:14px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
-        .btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(102,126,234,0.4);}
-        .btn-secondary{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);margin-top:10px;}
-        .btn-danger{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%);}
-        .btn-small{padding:6px 12px;font-size:12px;width:auto;}
-        .alert{padding:12px;border-radius:8px;margin-bottom:20px;font-size:14px;}
-        .alert-success{background:#d4edda;color:#155724;border:1px solid #c3e6cb;}
-        .alert-error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;}
-        .alert-info{background:#d1ecf1;color:#0c5460;border:1px solid #bee5eb;}
-        .user-list{list-style:none;margin-top:20px;}
-        .user-item{background:#f8f9fa;padding:15px;border-radius:8px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
-        .user-info{flex:1;}
-        .user-name{font-weight:600;color:#333;}
-        .user-email{font-size:12px;color:#666;}
-        .draw-result{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);color:white;padding:30px;border-radius:15px;text-align:center;margin-top:20px;}
-        .draw-result h2{margin-bottom:15px;font-size:24px;color:white;}
-        .drawn-person{font-size:32px;font-weight:bold;margin:20px 0;}
-        .wish-box{background:rgba(255,255,255,0.2);padding:15px;border-radius:10px;margin-top:15px;}
-        .nav-links{text-align:center;margin-top:20px;}
-        .nav-links a{color:#667eea;text-decoration:none;margin:0 10px;font-weight:600;}
-        .nav-links a:hover{text-decoration:underline;}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secret Santa</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <div class="container <?php echo $container_class; ?>">
